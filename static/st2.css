@@ -1,0 +1,105 @@
+
+    /* Styles for the menu and game list */
+
+    body {
+        position: relative;
+        color: white;
+        background-color: #171a21;
+        text-align: center;
+        padding: 20px;
+    }
+
+    button {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        background-color: #171a21;
+        border-radius: 5px;
+        margin: auto;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        padding-right: 20px;
+    }
+
+    #meni {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1b2838;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        height: 50px;
+        z-index: 999; /* Ensure the menu stays above other content */
+    }
+
+    .game-container {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Center align game items */
+    }
+
+    .game-item {
+        margin-bottom: 15px;
+        text-align: center;
+        flex: 0 0 30%; /* Adjust game item width */
+    }
+
+    .game-name {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .player-count {
+        font-size: 16px;
+        color: lightgray;
+    }
+
+    .game-image {
+        width: 150px;
+    }
+  
+    li {
+        background-color: #1e2b3b;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding: 10px;
+    }
+    
+    /* Mobile-friendly Styles */
+    @media only screen and (max-width: 600px) {
+        body {
+            padding: 10px; /* Decrease overall padding for mobile devices */
+        }
+
+        .game-image {
+            width: 100px; /* Decrease image size for mobile devices */
+        }
+
+        .game-item {
+            text-align: center; /* Center align game items on mobile devices */
+            flex: 0 0 80%; /* Adjust game item width */
+        }
+
+        .game-name {
+            font-size: 18px; /* Decrease font size for game names on mobile devices */
+            margin-bottom: 2px;
+        }
+
+        .player-count {
+            font-size: 14px; /* Decrease font size for player count on mobile devices */
+        }
+
+        li {
+            margin-left: 5%; /* Adjust margin for list items on mobile devices */
+            margin-right: 5%;
+            padding: 5px;
+        }
+    }
+    #logotip{
+        width: 50px;
+        margin-right: 25%;
+      }

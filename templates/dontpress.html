@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Informacije</title>
+  <style>
+    .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+body {
+        position: relative;
+        color: white;
+        background-color: #171a21;
+        text-align: center;
+        padding-top: 70px; /* Adjust padding to accommodate the fixed menu */
+    }
+
+    button {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        background-color: #171a21;
+        border-radius: 5px;
+        margin: auto;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    #meni {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1b2838;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        height: 50px;
+        z-index: 999; /* Ensure the menu stays above other content */
+    }
+  </style>
+</head>
+<body>
+  <div id="meni">
+    <form action="/" method="post">
+      <button type="submit">DISCOUNTED GAMES AND DEALS</button>
+    </form>
+    <form action="/games" method="post">
+      <button type="submit">TOP 15 GAMES</button>
+    </form>
+    <form action="/player" method="post">
+      <button type="submit">PLAYER INFORMATION</button>
+    </form>
+    <form action="/dontpress" method="post">
+      <button type="submit">INFO</button>
+    </form>
+  </div>
+    <div class="container">
+      <h1>Informacije</h1>
+      
+      <h2>Funkcija za prikaz informacij o igralcu</h2>
+      <p>
+        Funkcija za prikaz informacij o igralcu je povezana z ruta /player_info. Ko uporabnik obišče to ruto s parametrom igralčevega ID-ja, se funkcija izvede. Pridobi informacije o igralcu iz Steam API-ja, kot so ime igralca, slika profila in število ur igranja. Te podatke nato prikaže na spletni strani z uporabo predloge player_info.html. Funkcija deluje kot most med frontendom in Steam API-jem, zagotavljajoč dinamične informacije o igralcih na podlagi uporabniškega vnosa.
+      </p>
+      
+      <h2>Funkcija za pridobivanje informacij o igri</h2>
+      <p>
+        Funkcija za pridobivanje informacij o igri se sproži, ko uporabnik obišče ruto /game_info s parametrom igre. Funkcija pridobi podrobne informacije o igri iz Steam API-ja, vključno s naslovom, opisom, žanri in oceno igre. Zbrane podatke o igri prikaže na spletni strani z uporabo predloge game_details.html. Ta funkcija deluje kot posrednik med frontendom in Steam API-jem, omogoča pridobivanje in prikaz podrobnosti o določeni igri.
+      </p>
+      
+      <h2>Funkcija za štetje trenutnih igralcev</h2>
+      <p>
+        Funkcija za štetje živih igralcev je vključena v posodabljanje odseka s trenutnim številom igralcev na strani live.html. Ta odsek periodično pošilja zahteve na ruto /live_player_count. Ko je sprožena, funkcija vzpostavi komunikacijo s Steam API-jem, da pridobi trenutno število igralcev za izbrano igro. Pridobljeno število igralcev se nato prikaže na spletni strani, kar omogoča uporabnikom pridobivanje informacij v realnem času. Ta funkcija omogoča dinamično in v realnem času sledenje številu igralcev za določeno igro.
+      </p>
+    </div>
+  </body>
+  </html>

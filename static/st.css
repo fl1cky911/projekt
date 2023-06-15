@@ -1,0 +1,117 @@
+body {
+    position: relative;
+    color: white;
+    background-color: #171a21;
+    text-align: center;
+    padding-top: 70px; /* Adjust padding to accommodate the fixed menu */
+}
+
+button {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #171a21;
+    border-radius: 5px;
+    margin: auto;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    padding-right: 20px;
+}
+
+#meni {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1b2838;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 50px;
+    z-index: 999; /* Ensure the menu stays above other content */
+}
+
+#carousel-container {
+    position: relative;
+    margin-top: 100px;
+}
+
+.game-image {
+    width: 120px;
+}
+
+.carousel-item img {
+    display: block;
+    margin: 0 auto;
+    max-height: 400px;
+    width: auto;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 80%;
+    background-color: #1e2b3b;
+    margin-top: 20px;
+    color: white;
+}
+
+td, th {
+    border: 1px solid #4f5b66;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #192227;
+}
+
+tr:hover {
+    background-color: #253341;
+}
+
+/* Transitions for the carousel */
+.carousel-item {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item:not(.active) {
+    opacity: 0;
+}
+
+#table-container {
+    margin-top: 50px; /* Adjust the margin to create spacing between the carousel and table */
+}
+
+#footer {
+    background-color: #1b2838;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Mobile-friendly Styles */
+@media only screen and (max-width: 600px) {
+    body {
+        padding-top: 120px; /* Increase padding for mobile devices */
+    }
+
+    #carousel-container {
+        margin-top: 50px; /* Adjust margin for mobile devices */
+    }
+
+    .game-image {
+        width: 80px; /* Decrease image size for mobile devices */
+    }
+
+    table {
+        width: 90%; /* Adjust table width for mobile devices */
+    }
+}
+#logotip{
+    width: 50px;
+    margin-right: 25%;
+  }

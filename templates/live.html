@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TOP 15 GAMES</title>
+    <!-- Create a new CSS file and save it as 'styles.css' -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='st2.css') }}">
+
+</head>
+<body>
+  <div id="meni">
+    <form action="/" method="post">
+      <button type="submit">DISCOUNTED GAMES AND DEALS</button>
+    </form>
+    <form action="/games" method="post">
+      <button type="submit">TOP 15 GAMES</button>
+    </form>
+    <form action="/player" method="post">
+      <button type="submit">PLAYER INFORMATION</button>
+    </form>
+    <form action="/dontpress" method="post">
+      <button type="submit">INFO</button>
+    </form>
+  </div>
+    <div class="container">
+        <h1>Live Games</h1>
+        <div class="game-container">
+            <ol>
+                {% for game in game_data %}
+                <div class="game-item">
+                    <li>
+                        <img src="{{ game['image_url'] }}" alt="{{ game['name'] }}" class="game-image"><br>
+                        <a href="{{ url_for('game_details', game_id=game['game_id']) }}">{{ game['name'] }}</a>
+                        <p class="player-count">Player Count: {{ game['player_count'] }}</p>
+                    </li>
+                </div>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</body>
+</html>

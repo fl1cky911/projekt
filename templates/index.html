@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>DISCOUNTED GAMES AND DEALS</title>
+   <style>
+    body {
+        position: relative;
+        color: white;
+        background-color: #171a21;
+        text-align: center;
+        padding-top: 70px; /* Adjust padding to accommodate the fixed menu */
+    }
+
+    button {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        background-color: #171a21;
+        border-radius: 5px;
+        margin: auto;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    #meni {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1b2838;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        height: 50px;
+        z-index: 999; /* Ensure the menu stays above other content */
+    }
+
+    #carousel-container {
+        position: relative;
+        margin-top: 100px;
+    }
+
+    .game-image {
+        width: 120px;
+    }
+
+    .carousel-item img {
+        display: block;
+        margin: 0 auto;
+        max-height: 400px;
+        width: auto;
+    }
+
+    table {
+        margin: auto;
+        border-collapse: collapse;
+        width: 80%;
+        background-color: #1e2b3b;
+        margin-top: 20px;
+        color: white;
+    }
+
+    td, th {
+        border: 1px solid #4f5b66;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #192227;
+    }
+
+    tr:hover {
+        background-color: #253341;
+    }
+
+    /* Transitions for the carousel */
+    .carousel-item {
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .carousel-item:not(.active) {
+        opacity: 0;
+    }
+
+    #table-container {
+        margin-top: 50px; /* Adjust the margin to create spacing between the carousel and table */
+    }
+
+    #footer {
+        background-color: #1b2838;
+        color: white;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Mobile-friendly Styles */
+    @media only screen and (max-width: 600px) {
+        body {
+            padding-top: 120px; /* Increase padding for mobile devices */
+        }
+
+        #carousel-container {
+            margin-top: 50px; /* Adjust margin for mobile devices */
+        }
+
+        .game-image {
+            width: 80px; /* Decrease image size for mobile devices */
+        }
+
+        table {
+            width: 90%; /* Adjust table width for mobile devices */
+        }
+    }
+    #logotip{
+      width: 50px;
+      margin-right: 25%;
+    }
+</style>
+
+</head>
+<body>
+  <div id="meni">
+    <img id="logotip"src="{{ url_for('static', filename='steam.png') }}" alt="">
+    <form action="/" method="post">
+      <button type="submit">DISCOUNTED GAMES AND DEALS</button>
+    </form>
+    <form action="/games" method="post">
+      <button type="submit">TOP 15 GAMES</button>
+    </form>
+    <form action="/player" method="post">
+      <button type="submit">PLAYER INFORMATION</button>
+    </form>
+    <form action="/dontpress" method="post">
+      <button type="submit">INFO</button>
+    </form>
+  </div>
+
+  <div id="carousel-container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        {% for img in weekspec %}
+          <div class="carousel-item{% if loop.first %} active{% endif %}">
+            <img src="{{ img['header_image'] }}" alt="Slide">
+            <a src="{{ img['url'] }}">{{ img['url'] }}</a>
+          </div>
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  <div id="table-container">
+    <h1>DISCOUNTED GAMES</h1>
+    <table>
+        {% for game in pop %}
+        <tr>
+            <td rowspan="2"><img src="{{ game['header_image'] }}" class="game-image"></td>
+            <td>{{ game['name'] }}</td>
+        </tr>
+        <tr>
+            <td>OLD {{ game['original price'] }} € / NEW {{ game['new price'] }} €</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+
+  <div id="table-container">
+    <h1>COMING SOON</h1>
+    <table>
+        {% for work in csp %}
+        <tr>
+            <td rowspan="2"><img src="{{ work['header_image'] }}" class="game-image"></td>
+            <td>{{ work['name'] }}</td>
+        </tr>
+        <tr>
+            <td>OLD {% if work['original price'] and work['original price'] != 0 %}{{ work['original price'] }} €{% else %}unknown{% endif %} / NEW {% if work['final price'] and work['final price'] != 0 %}{{ work['final price'] }} €{% else %}unknown{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+
+  <div id="table-container">
+    <h1>TOP SELLERS</h1>
+    <table class="my-table">
+        {% for ok in tsp %}
+        <tr>
+            <td rowspan="2"><img src="{{ ok['header_image'] }}" class="game-image"></td>
+            <td>{{ ok['name'] }}</td>
+        </tr>
+        <tr>
+            <td>OLD {% if ok['original price'] and ok['original price'] != 0 %}{{ ok['original price'] }} €{% else %}unknown{% endif %} / NEW {% if ok['final price'] and ok['final price'] != 0 %}{{ ok['final price'] }} €{% else %}unknown{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+
+  <div id="table-container">
+    <h1>NEW RELEASES</h1>
+    <table>
+        {% for nr in nrp %}
+        <tr>
+            <td rowspan="2"><img src="{{ nr['header_image'] }}" class="game-image"></td>
+            <td>{{ nr['name'] }}</td>
+        </tr>
+        <tr>
+            <td>OLD {% if nr['original price'] and nr['original price'] != 0 %}{{ nr['original price'] }} €{% else %}unknown{% endif %} / NEW {% if nr['final price'] and nr['final price'] != 0 %}{{ nr['final price'] }} €{% else %}unknown{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+
+  <div id="footer">
+    <p>DISCOUNTED GAMES AND DEALS &copy; 2023</p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Auto cycle the carousel
+      $('#myCarousel').carousel({
+        interval: 5000 // Set the desired interval in milliseconds
+      });
+
+      // Handle previous button click
+      $('.carousel-control-prev').click(function() {
+        $('#myCarousel').carousel('prev');
+      });
+
+      // Handle next button click
+      $('.carousel-control-next').click(function() {
+        $('#myCarousel').carousel('next');
+      });
+    });
+  </script>
+</body>
+</html>
